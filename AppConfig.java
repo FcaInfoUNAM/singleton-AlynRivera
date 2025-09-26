@@ -2,20 +2,34 @@ public class AppConfig {
     private String theme;
     private String language;
 
-    public AppConfig() {
-        // Load default settings
+    // 1. Instancia única (eager initialization)
+    private static final AppConfig instance = new AppConfig();
+
+    // 2. Constructor privado
+    private AppConfig() {
         this.theme = "Light";
         this.language = "EN";
-        System.out.println("New AppConfig instance created!");
     }
 
-    public String getTheme() { return theme; }
-    public void setTheme(String theme) { this.theme = theme; }
+    // 3. Método público para obtener la instancia
+    public static AppConfig getInstance() {
+        return instance;
+    }
 
-    public String getLanguage() { return language; }
-    public void setLanguage(String language) { this.language = language; }
+    // getters y setters
+    public String getTheme() {
+        return theme;
+    }
 
-    public void printConfig() {
-        System.out.println("Theme: " + theme + ", Language: " + language);
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
